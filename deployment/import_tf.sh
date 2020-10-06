@@ -11,7 +11,7 @@ rm plan.tf || true
 ../terraform import module.cdn.aws_s3_bucket.origin[0] yogalates-prod-yogalatescdn-origin || true
 ../terraform import module.cdn.aws_cloudfront_distribution.default E2PAE9UZIO3W9O || true
 
-../terraform import aws_route53_record.cdn cdn.yogalates.dk || true
+../terraform import aws_route53_record.cdn ZOIU0SZ2X0UUQ_cdn.yogalates.dk_A || true
 
 ../terraform plan -out plan.tf
 ../terraform apply plan.tf
