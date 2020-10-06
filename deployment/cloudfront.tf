@@ -8,5 +8,5 @@ module "cdn" {
   parent_zone_id        = "ZOIU0SZ2X0UUQ"
   cors_allowed_methods  = ["GET", "PUT"]
   cors_allowed_origins  = ["yogalates.dk", "www.yogalates.dk"]
-  bucket_domain_format  = "%s.eu-west-1.s3.amazonaws.com"
+  bucket_domain_format  = "%s.s3.amazonaws.com"
 }
