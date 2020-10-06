@@ -15,5 +15,6 @@ resource "aws_lambda_function" "Yogalates-images" {
   handler       = "index.handler"
   source_code_hash = "${filebase64sha256("../artifact/artifact.zip")}"
   runtime       = "nodejs12.x"
-
+  
+  source_arn = "arn:aws:execute-api:eu-west-1:368263227121:${var.rest_api_id.value}/*/${aws_api_gateway_method.GET_images.http_method}${aws_api_gateway_resource.Yogalates-images.path}"
 }
