@@ -3,13 +3,13 @@ variable "rest_api_id" {
 }
 
 resource "aws_api_gateway_resource" "Yogalates-images" {
-  rest_api_id = var.rest_api_id.value
+  rest_api_id = var.rest_api_id
   parent_id   = "7718cgl77a"
   path_part   = "images"
 }
 
 resource "aws_api_gateway_method" "GET_images" {
-  rest_api_id   = var.rest_api_id.value
+  rest_api_id   = var.rest_api_id
   resource_id   = aws_api_gateway_resource.Yogalates-images.id
   http_method   = "GET"
   authorization = "COGNITO_USER_POOLS"
@@ -22,7 +22,7 @@ resource "aws_api_gateway_method" "GET_images" {
 
 resource "aws_api_gateway_integration" "GET_images_integration" {
   depends_on              = [aws_api_gateway_method.GET_images]
-  rest_api_id             = var.rest_api_id.value
+  rest_api_id             = var.rest_api_id
   resource_id             = aws_api_gateway_resource.Yogalates-images.id
   http_method             = aws_api_gateway_method.GET_images.http_method
   integration_http_method = aws_api_gateway_method.GET_images.http_method
@@ -33,7 +33,7 @@ resource "aws_api_gateway_integration" "GET_images_integration" {
 resource "aws_api_gateway_deployment" "Yogalates-API-deployment" {
   depends_on = [aws_api_gateway_integration.GET_images_integration]
 
-  rest_api_id = var.rest_api_id.value
+  rest_api_id = var.rest_api_id
   stage_name  = "prod"
 
   lifecycle {
