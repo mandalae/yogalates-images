@@ -32,7 +32,6 @@ exports.handler = async (event) => {
                 const documentToUpload = event.queryStringParameters.document;
                 const mimeType = event.queryStringParameters.mimeType;
 
-                console.log('Document to upload', documentToUpload);
                 let params = {
                   Bucket: bucketName,
                   Key: documentToUpload,
