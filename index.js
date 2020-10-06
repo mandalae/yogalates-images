@@ -2,7 +2,7 @@ const aws = require('aws-sdk');
 
 const s3 = new aws.S3({apiVersion: '2006-03-01', signatureVersion: 'v4', region: 'eu-west-1'});
 
-const bucketName = "cdn.yogalates.dk";
+const bucketName = "yogalates-prod-yogalatescdn-origin";
 
 exports.handler = async (event) => {
     return new Promise(async (resolve, reject) => {
