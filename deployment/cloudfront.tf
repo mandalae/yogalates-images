@@ -19,7 +19,13 @@ module "cdn" {
               "Principal": {
                   "AWS": "arn:aws:iam::368263227121:role/BasicLambdaRole"
               },
-              "Action": "s3:PutObject",
+              "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:GetObject",
+                "s3:GetObjectAcl",
+                "s3:DeleteObject"
+             ],
               "Resource": "arn:aws:s3:::yogalates-prod-yogalatescdn-origin/*"
           },
           {
