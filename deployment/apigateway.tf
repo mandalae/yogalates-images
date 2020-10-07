@@ -2,6 +2,10 @@ variable "rest_api_id" {
     default = "ul55ggh6oa"
 }
 
+resource "aws_api_gateway_rest_api" "Yogalates" {
+  name        = "Yogalates"
+}
+
 resource "aws_api_gateway_resource" "Yogalates-images" {
   rest_api_id = var.rest_api_id
   parent_id   = "7718cgl77a"
