@@ -33,6 +33,10 @@ resource "aws_api_gateway_method_response" "images_response_200" {
   resource_id             = var.images_resource_id
   http_method             = aws_api_gateway_method.GET_images.http_method
   status_code             = "200"
+
+  response_models     = {
+    "application/json" = ""
+  }
 }
 
 resource "aws_api_gateway_deployment" "Yogalates-API-deployment" {
