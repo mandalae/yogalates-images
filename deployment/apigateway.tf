@@ -28,8 +28,15 @@ resource "aws_api_gateway_integration" "GET_images_integration" {
   uri                     = aws_lambda_function.Yogalates-images.invoke_arn
 }
 
+resource "aws_api_gateway_method_response" "images_response_200" {
+  rest_api_id             = var.rest_api_id
+  resource_id             = var.images_resource_id
+  http_method             = aws_api_gateway_method.GET_images.http_method
+  status_code             = "200"
+}
+
 resource "aws_api_gateway_deployment" "Yogalates-API-deployment" {
-  depends_on = [aws_api_gateway_integration.GET_images_integration]
+  depends_on = [aws_api_gateway_integration.GET_images_integration, aws_api_gateway_method_response.images_response_200]
 
   rest_api_id = var.rest_api_id
   stage_name  = "prod"

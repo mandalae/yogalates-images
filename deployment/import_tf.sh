@@ -15,6 +15,7 @@ rm plan.tf || true
 
 ../terraform import aws_api_gateway_method.GET_images ul55ggh6oa/7718cgl77a/GET || true
 ../terraform import aws_api_gateway_integration.GET_images_integration ul55ggh6oa/7718cgl77a/GET || true
+../terraform import aws_api_gateway_method_response.images_response_200 ul55ggh6oa/7718cgl77a/GET/200 || true
 
 ../terraform plan -out plan.tf
 ../terraform apply plan.tf
