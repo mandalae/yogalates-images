@@ -13,9 +13,9 @@ rm plan.tf || true
 
 ../terraform import aws_route53_record.cdn ZOIU0SZ2X0UUQ_cdn.yogalates.dk_A || true
 
-../terraform import aws_api_gateway_method.GET_images ul55ggh6oa/7718cgl77a/GET || true
-../terraform import aws_api_gateway_integration.GET_images_integration ul55ggh6oa/7718cgl77a/GET || true
-../terraform import aws_api_gateway_method_response.images_response_200 ul55ggh6oa/7718cgl77a/GET/200 || true
+../terraform import aws_api_gateway_method.GET_images 7718cgl77a/rtiutq/GET || true
+../terraform import aws_api_gateway_integration.GET_images_integration 7718cgl77a/rtiutq/GET || true
+../terraform import aws_api_gateway_method_response.images_response_200 7718cgl77a/rtiutq/GET/200 || true
 
 ../terraform plan -out plan.tf
 ../terraform apply plan.tf
