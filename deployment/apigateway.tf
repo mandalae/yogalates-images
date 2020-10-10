@@ -32,7 +32,7 @@ resource "aws_api_gateway_method_response" "images_response_200" {
   rest_api_id             = var.rest_api_id
   resource_id             = var.images_resource_id
   http_method             = aws_api_gateway_method.GET_images.http_method
-  status_code             = "200"
+  status_code             = 200
 
   response_models     = {
     "application/json" = "Empty"
@@ -63,7 +63,7 @@ resource "aws_api_gateway_method_response" "images_options_response_200" {
   rest_api_id             = var.rest_api_id
   resource_id             = var.images_resource_id
   http_method             = aws_api_gateway_method.OPTIONS_images.http_method
-  status_code             = "200"
+  status_code             = 200
 
   response_models     = {
     "application/json" = "Empty"
