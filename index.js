@@ -27,12 +27,10 @@ exports.handler = async (event) => {
                 reject(response);
             }
         }
-
+        console.log('Lambda event', event);
 
         switch (event.httpMethod) {
             case 'GET':
-                console.log('Lambda event', event);
-
                 const documentToUpload = event.queryStringParameters.document;
                 const mimeType = event.queryStringParameters.mimeType;
 
