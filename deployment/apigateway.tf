@@ -54,7 +54,11 @@ resource "aws_api_gateway_integration" "OPTIONS_images_integration" {
   type                    = "MOCK"
 
   request_templates = {
-    "application/json" = ""
+    "application/json" = <<EOF
+{
+   statusCode: 200
+}
+EOF
   }
 }
 
