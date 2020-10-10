@@ -38,6 +38,8 @@ resource "aws_api_gateway_integration" "GET_images_integration" {
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.Yogalates-images.invoke_arn
+
+  cache_key_parameters = ["method.request.querystring.document", "method.request.querystring.mimeType"]
 }
 
 resource "aws_api_gateway_method_response" "images_response_200" {
