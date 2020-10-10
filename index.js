@@ -15,8 +15,6 @@ exports.handler = async (event) => {
             body: ''
         };
 
-        console.log('Running get images lambda');
-
         const done = (err, res) => {
             if (!err){
                 response.body = JSON.stringify(res);
@@ -27,7 +25,6 @@ exports.handler = async (event) => {
                 reject(response);
             }
         }
-        console.log('Lambda event', event);
 
         switch (event.httpMethod) {
             case 'GET':

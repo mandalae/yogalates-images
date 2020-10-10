@@ -23,7 +23,7 @@ resource "aws_api_gateway_integration" "GET_images_integration" {
   rest_api_id             = var.rest_api_id
   resource_id             = var.images_resource_id
   http_method             = aws_api_gateway_method.GET_images.http_method
-  integration_http_method = aws_api_gateway_method.GET_images.http_method
+  integration_http_method = "POST"
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.Yogalates-images.invoke_arn
 }
