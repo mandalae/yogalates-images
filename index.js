@@ -31,7 +31,6 @@ exports.handler = async (event) => {
                 const documentToUpload = event.queryStringParameters.document;
                 const mimeType = event.queryStringParameters.mimeType;
 
-
                 let params = {
                   Bucket: bucketName,
                   Key: documentToUpload,
@@ -41,7 +40,6 @@ exports.handler = async (event) => {
                 if (mimeType){
                     params.ContentType = mimeType;
                 }
-                console.log(params);
 
                 const url = s3.getSignedUrl('putObject', params);
 
