@@ -55,9 +55,7 @@ resource "aws_api_gateway_integration" "OPTIONS_images_integration" {
 
   request_templates = {
     "application/json" = <<EOF
-{
-   statusCode: 200
-}
+{"statusCode": 200}
 EOF
   }
 }
@@ -92,14 +90,6 @@ resource "aws_api_gateway_integration_response" "images_options_integration_resp
     "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Authorization'",
     "method.response.header.Access-Control-Allow-Methods" = "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
     "method.response.header.Access-Control-Allow-Origin" = "'*'"
-  }
-
-  request_templates = {
-    "application/json" = <<EOF
-{
-   statusCode: 200
-}
-EOF
   }
 }
 
