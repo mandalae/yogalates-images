@@ -15,6 +15,8 @@ exports.handler = async (event) => {
             body: ''
         };
 
+        console.log('Running get images lambda');
+
         const done = (err, res) => {
             if (!err){
                 response.body = JSON.stringify(res);
@@ -29,8 +31,11 @@ exports.handler = async (event) => {
 
         switch (event.httpMethod) {
             case 'GET':
+                console.log('Lambda event', event);
+
                 const documentToUpload = event.queryStringParameters.document;
                 const mimeType = event.queryStringParameters.mimeType;
+
 
                 let params = {
                   Bucket: bucketName,
