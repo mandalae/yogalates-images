@@ -94,8 +94,12 @@ resource "aws_api_gateway_integration_response" "images_options_integration_resp
     "method.response.header.Access-Control-Allow-Origin" = "'*'"
   }
 
-  response_templates = {
-    "application/json" = ""
+  request_templates = {
+    "application/json" = <<EOF
+{
+   statusCode: 200
+}
+EOF
   }
 }
 
