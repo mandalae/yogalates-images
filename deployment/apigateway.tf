@@ -59,6 +59,7 @@ resource "aws_api_gateway_integration" "OPTIONS_images_integration" {
 }
 
 resource "aws_api_gateway_method_response" "images_options_response_200" {
+  depends_on              = [aws_api_gateway_method.OPTIONS_images]
   rest_api_id             = var.rest_api_id
   resource_id             = var.images_resource_id
   http_method             = aws_api_gateway_method.OPTIONS_images.http_method
@@ -69,9 +70,9 @@ resource "aws_api_gateway_method_response" "images_options_response_200" {
   }
 
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers": true,
-    "method.response.header.Access-Control-Allow-Methods": true,
-    "method.response.header.Access-Control-Allow-Origin": true
+    "method.response.header.Access-Control-Allow-Headers" = true,
+    "method.response.header.Access-Control-Allow-Methods" = true,
+    "method.response.header.Access-Control-Allow-Origin" = true
   }
 }
 
