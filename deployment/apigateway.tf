@@ -14,7 +14,9 @@ resource "aws_api_gateway_method" "GET_images" {
   authorizer_id = "dsc7wd"
 
   request_parameters = {
-    "method.request.header.X-Authorization" = true
+    "method.request.header.X-Authorization" = true,
+    "method.request.querystring.document" = true,
+    "method.request.querystring.mimeType" = true
   }
 }
 
