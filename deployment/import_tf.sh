@@ -17,6 +17,8 @@ rm plan.tf || true
 ../terraform import aws_api_gateway_integration.GET_images_integration ul55ggh6oa/rtiutq/GET || true
 ../terraform import aws_api_gateway_method_response.images_response_200 ul55ggh6oa/rtiutq/GET/200 || true
 
+../terraform import aws_api_gateway_request_validator.images_request_validator ul55ggh6oa/gqp7ro || true
+
 ../terraform import aws_api_gateway_method.OPTIONS_images ul55ggh6oa/rtiutq/OPTIONS || true
 ../terraform import aws_api_gateway_integration.OPTIONS_images_integration ul55ggh6oa/rtiutq/OPTIONS || true
 ../terraform import aws_api_gateway_method_response.images_options_response_200 ul55ggh6oa/rtiutq/OPTIONS/200 || true
