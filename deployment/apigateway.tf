@@ -52,6 +52,10 @@ resource "aws_api_gateway_integration" "OPTIONS_images_integration" {
   resource_id             = var.images_resource_id
   http_method             = aws_api_gateway_method.OPTIONS_images.http_method
   type                    = "MOCK"
+
+  request_templates = {
+    "application/json" = ""
+  }
 }
 
 resource "aws_api_gateway_method_response" "images_options_response_200" {
