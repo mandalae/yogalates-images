@@ -6,17 +6,27 @@ variable "images_resource_id" {
     default = "rtiutq"
 }
 
+resource "aws_api_gateway_request_validator" "images_request_validator" {
+  name                        = "images_request_validator"
+  rest_api_id                 = var.rest_api_id
+  validate_request_body       = false
+  validate_request_parameters = true
+}
+
 resource "aws_api_gateway_method" "GET_images" {
-  rest_api_id   = var.rest_api_id
-  resource_id   = var.images_resource_id
-  http_method   = "GET"
-  authorization = "COGNITO_USER_POOLS"
-  authorizer_id = "dsc7wd"
+  depends_on            = [aws_api_gateway_request_validator.images_request_validator]
+
+  rest_api_id           = var.rest_api_id
+  resource_id           = var.images_resource_id
+  http_method           = "GET"
+  authorization         = "COGNITO_USER_POOLS"
+  authorizer_id         = "dsc7wd"
+  request_validator_id  = aws_api_gateway_request_validator.images_request_validator.id
 
   request_parameters = {
     "method.request.header.X-Authorization" = true,
     "method.request.querystring.document" = true,
-    "method.request.querystring.mimeType" = true
+    "method.request.querystring.mimeType" = false
   }
 }
 
