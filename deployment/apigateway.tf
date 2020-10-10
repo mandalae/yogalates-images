@@ -39,11 +39,61 @@ resource "aws_api_gateway_method_response" "images_response_200" {
   }
 }
 
+resource "aws_api_gateway_method" "OPTIONS_images" {
+  rest_api_id   = var.rest_api_id
+  resource_id   = var.images_resource_id
+  http_method   = "OPTIONS"
+}
+
+resource "aws_api_gateway_integration" "OPTIONS_images_integration" {
+  depends_on              = [aws_api_gateway_method.OPTIONS_images]
+  rest_api_id             = var.rest_api_id
+  resource_id             = var.images_resource_id
+  http_method             = aws_api_gateway_method.OPTIONS_images.http_method
+  type                    = "MOCK"
+}
+
+resource "aws_api_gateway_method_response" "images_options_response_200" {
+  rest_api_id             = var.rest_api_id
+  resource_id             = var.images_resource_id
+  http_method             = aws_api_gateway_method.OPTIONS_images.http_method
+  status_code             = "200"
+
+  response_models     = {
+    "application/json" = "Empty"
+  }
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers": true,
+    "method.response.header.Access-Control-Allow-Methods": true,
+    "method.response.header.Access-Control-Allow-Origin": true
+  }
+}
+
+resource "aws_api_gateway_integration_response" "images_options_integration_response" {
+  depends_on = [aws_api_gateway_integration.OPTIONS_images_integration, aws_api_gateway_method_response.images_options_response_200]
+
+  rest_api_id = var.rest_api_id
+  resource_id = var.images_resource_id
+  http_method = aws_api_gateway_method.OPTIONS_images.http_method
+  status_code = aws_api_gateway_method_response.images_options_response_200.status_code
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Authorization'",
+    "method.response.header.Access-Control-Allow-Methods" = "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
+
+  response_templates = {
+    "application/json" = ""
+  }
+}
+
 resource "aws_api_gateway_deployment" "Yogalates-API-deployment" {
   depends_on = [aws_api_gateway_integration.GET_images_integration, aws_api_gateway_method_response.images_response_200]
 
   rest_api_id = var.rest_api_id
-  stage_name  = "prod"
+  stage_name  = "Prod"
 
   lifecycle {
     create_before_destroy = true
