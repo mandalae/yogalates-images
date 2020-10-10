@@ -43,6 +43,7 @@ resource "aws_api_gateway_method" "OPTIONS_images" {
   rest_api_id   = var.rest_api_id
   resource_id   = var.images_resource_id
   http_method   = "OPTIONS"
+  authorization = "NONE"
 }
 
 resource "aws_api_gateway_integration" "OPTIONS_images_integration" {
